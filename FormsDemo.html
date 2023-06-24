@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../Form.png">
+    <link rel="stylesheet" href="../Form.css">
+    <title>Demo Form</title>
+</head>
+<body>
+    <form>
+        <header class="header-container"><h1>HTML-5 Form Input Field</h1></header>
+        <div>
+            <label for="text"> Text input type for name </label>
+            <input type="text" id="text" name="text" required placeholder="Enter your full name">
+            <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="pwd"> Password input type </label>
+            <input type="password" id="pwd" name="pwd" required placeholder="Enter password">
+            <error-output class="pass-error" for="pwd"></error-output>
+        </div>
+        <div>
+            <label for="email"> Email input type </label>
+            <input type="email" id="email" name="email" required placeholder="Enter email">
+            <error-output class="mail-error" for="email"></error-output>
+        </div>
+        <div>
+            <label for="url"> URL input type </label>
+            <input type="url" id="url" name="url" required placeholder="Enter url">
+        </div>
+        <div>
+            <label for="number"> Number input type </label>
+            <input type="number" id="number" name="number" required placeholder="Enter your number">
+        </div>
+        <div>
+            <label for="tel"> Telephone input type </label>
+            <input type="tel" id="tel" name="tel">
+        </div>
+        <div>
+            <label for="search"> Search input type </label>
+            <input type="search" id="search" name="search" placeholder="Search">
+        </div>
+        <div class="nativeDateTimePicker">
+            <label for="party">Choose a date and time: </label>
+            <input type="datetime-local" id="party" name="bday">
+            <span class="Validity"></span>
+        </div>
+        <div>
+            <label for="salary"> Choose your Salary: </label>
+            <input type="range" name="salary" id="salary" min="30000" max="100000" step="100" value="40000">
+            <output class="salary-output" for="salary"></output>
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+    <script>
+        const salary = document.querySelector('#salary')
+        const output = document.querySelector('.salary-output')
+        output.textContent = salary.value;
+        salary.addEventListener('input', function() {
+            output.textContent = salary.value;  
+        });
+
+        const text = document.querySelector('#text');
+        const textError = document.querySelector('.text-error');
+        text.addEventListener('input', function(){
+            let namePattern = RegExp('^[A-Z][A-Za-z]{2,}$');
+            if(namePattern.test(text.value))
+            textError.textContent = "";
+            else textError.textContent = "Enter your correct name!";
+        });
+
+        const pass = document.querySelector('#pwd');
+        const passError = document.querySelector('.pass-error');
+        pass.addEventListener('input', function(){
+            let passPattern = RegExp('^[A-Z][A-Za-z0-9.-_]{5,}[0-9]{1,}[@.-_]$');
+            if(passPattern.test(pass.value))
+            passError.textContent = "";
+            else passError.textContent = "Enter valid password!";
+        });
+
+        const mail = document.querySelector('#email');
+        const emailError = document.querySelector('.mail-error');
+        mail.addEventListener('input', function(){
+            let mailPattern = RegExp('^[A-Za-z0-9._+-]{3,}[@]{1}[A-Za-z]{1,}[.]{1}[a-z]{3,}$');
+            if(mailPattern.test(mail.value))
+            emailError.textContent = "";
+            else emailError.textContent = "Enter correct email!";
+        });
+    </script>
+    
+</body>
+</html>
